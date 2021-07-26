@@ -1,0 +1,8 @@
+commands.gravitysurvival.stop=重力の回転を停止しました
+commands.gravitysurvival.start=重力の回転を開始しました
+commands.gravitysurvival.change.speed=回転速度が %s 秒にしました
+commands.gravitysurvival.change.uniform.false=回転方向をバラバラにしました
+commands.gravitysurvival.change.uniform.true=回転方向を均一にしました
+commands.gravitysurvival.nostarted=まだ開始していません
+commands.gravitysurvival.alreadystarted=すでに開始しています
+gravitysurvival.nextroted=あと %s 秒で回転します

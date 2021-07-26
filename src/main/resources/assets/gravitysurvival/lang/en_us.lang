@@ -1,0 +1,8 @@
+commands.gravitysurvival.stop=Stopped the rotation of gravity
+commands.gravitysurvival.start=Start rotation of gravity
+commands.gravitysurvival.change.speed=Rotation speed was set to %s seconds
+commands.gravitysurvival.change.uniform.false=Does not make the direction of rotation uniform
+commands.gravitysurvival.change.uniform.true=Made the direction of rotation uniform
+commands.gravitysurvival.nostarted=Not started yet
+commands.gravitysurvival.alreadystarted=Already started
+gravitysurvival.nextroted=It will rotate in %s seconds

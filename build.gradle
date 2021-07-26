@@ -1,0 +1,16 @@
+apply from: 'https://raw.githubusercontent.com/TeamFelnull/GradleTemplate/main/minecraft/1.12.2/forge.gradle'
+
+buildscript {
+    repositories {
+        maven { url = 'https://files.minecraftforge.net/maven' }
+        jcenter()
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'net.minecraftforge.gradle:ForgeGradle:3.+'
+    }
+}
+
+dependencies {
+    compile fg.deobf(files("libs/UpAndDownAndAllAround-1.12.2-2.9.1-deobf.jar"))
+}
