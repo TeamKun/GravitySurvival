@@ -8,7 +8,7 @@
 # 仕様
 
 * gravitysurvival  
-    * start 回転までの時間<1～>(省略可) バラバラ回転か[true/false](省略可)  
+    * start 回転までの時間<1～>(省略可) バラバラ回転か[true/false] (省略可)  
     * stop 停止  
     * change 変更  
         * speed  回転までの時間（秒）  
