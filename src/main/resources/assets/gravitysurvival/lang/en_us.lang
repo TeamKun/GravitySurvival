@@ -8,3 +8,4 @@ commands.gravitysurvival.change.forcedrotation.true=Disable forced rotation
 commands.gravitysurvival.nostarted=Not started yet
 commands.gravitysurvival.alreadystarted=Already started
 gravitysurvival.nextroted=It will rotate in %s seconds
+commands.gravitysurvival.usage=You can use it at https://github.com/TeamKun/GravitySurvival

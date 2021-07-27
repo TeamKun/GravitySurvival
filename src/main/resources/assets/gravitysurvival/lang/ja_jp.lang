@@ -8,3 +8,4 @@ commands.gravitysurvival.change.forcedrotation.true=強制回転を有効にし�
 commands.gravitysurvival.nostarted=まだ開始していません
 commands.gravitysurvival.alreadystarted=すでに開始しています
 gravitysurvival.nextroted=あと %s 秒で回転します
+commands.gravitysurvival.usage=https://github.com/TeamKun/GravitySurvival を読んでください
