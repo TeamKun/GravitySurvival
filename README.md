@@ -13,7 +13,7 @@
     * change 変更  
         * speed  回転までの時間（秒）  
         * uniform  全員バラバラに回転するか固定かどうか(true/false)  
-        * forcedrotation 強制回転（クリエーティブやスペクターでも回転) デフォルトではfalse  
+        * forcedrotation 強制回転（クリエーティブやスペクターでも回転) デフォルトではtrue  
 
 開始コマンド例  
 /gravitysurvival start 19 true
