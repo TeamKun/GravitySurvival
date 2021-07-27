@@ -16,7 +16,8 @@ public class GravitySurvivalManager {
     private EnumGravityDirection DIRECTION = EnumGravityDirection.DOWN;
     private final UUID uuid = UUID.randomUUID();
     private final Random random = new Random();
-    private boolean UNIFORM_GRAVITY;
+    private boolean uniformGravity;
+    private boolean forcedRotation;
     private boolean running;
     private long lastTime;
     private long lastCont;
@@ -28,9 +29,10 @@ public class GravitySurvivalManager {
     }
 
     public void start(int rotedSec, boolean uniformGravity) {
-        this.UNIFORM_GRAVITY = uniformGravity;
+        this.uniformGravity = uniformGravity;
         reset(true);
         this.rotedSec = rotedSec;
+        this.forcedRotation = true;
         this.running = true;
     }
 
@@ -56,10 +58,10 @@ public class GravitySurvivalManager {
 
         ServerUtils.getPlayers().forEach(n -> n.connection.sendPacket(new SPacketUpdateBossInfo(SPacketUpdateBossInfo.Operation.ADD, new GravityInfo(uuid, new TextComponentTranslation("gravitysurvival.nextroted", rotedSec - (int) (currentSec / 1000)), BossInfo.Color.BLUE, createBossOverlay(), par))));
 
-        if (UNIFORM_GRAVITY) {
+        if (uniformGravity) {
             if (changeFlg)
                 DIRECTION = nextDirection(DIRECTION);
-            ServerUtils.getPlayers().forEach(n -> API.setPlayerGravity(DIRECTION, n, 715827881));
+            ServerUtils.getPlayers().stream().filter(this::canRoted).forEach(n -> API.setPlayerGravity(DIRECTION, n, 715827881));
         } else {
             for (EntityPlayerMP player : ServerUtils.getPlayers()) {
                 if (!DIRECTIONS.containsKey(player.getGameProfile().getId()))
@@ -69,9 +71,13 @@ public class GravitySurvivalManager {
                 List<UUID> ids = new ArrayList<>(DIRECTIONS.keySet());
                 ids.forEach(n -> DIRECTIONS.put(n, nextDirection(DIRECTIONS.get(n))));
             }
+
             DIRECTIONS.forEach((n, m) -> {
-                EntityPlayerMP ple = ServerUtils.getServer().getPlayerList().getPlayerByUUID(n);
-                API.setPlayerGravity(m, ple, 715827881);
+                if (ServerUtils.isOnlinePlayer(n)) {
+                    EntityPlayerMP ple = ServerUtils.getServer().getPlayerList().getPlayerByUUID(n);
+                    if (canRoted(ple))
+                        API.setPlayerGravity(m, ple, 715827881);
+                }
             });
         }
     }
@@ -139,6 +145,14 @@ public class GravitySurvivalManager {
     }
 
     public void setUniform(boolean UNIFORM_GRAVITY) {
-        this.UNIFORM_GRAVITY = UNIFORM_GRAVITY;
+        this.uniformGravity = UNIFORM_GRAVITY;
+    }
+
+    public void setForcedRotation(boolean forcedRotation) {
+        this.forcedRotation = forcedRotation;
+    }
+
+    private boolean canRoted(EntityPlayerMP playerMP) {
+        return forcedRotation || (!playerMP.isCreative() && !playerMP.isSpectator() && !playerMP.isDead);
     }
 }

@@ -58,6 +58,12 @@ public class CommandGravitySurvival extends CommandBase {
                 manager.reset(false);
                 sender.sendMessage(new TextComponentTranslation("commands.gravitysurvival.change.uniform." + enable));
                 return;
+            }else if (args.length >= 3 && "forcedrotation".equals(args[1])) {
+                boolean enable = parseBoolean(args[2]);
+                manager.setForcedRotation(enable);
+                manager.reset(false);
+                sender.sendMessage(new TextComponentTranslation("commands.gravitysurvival.change.forcedrotation." + enable));
+                return;
             }
         }
 
@@ -68,10 +74,10 @@ public class CommandGravitySurvival extends CommandBase {
     public List<String> getTabCompletions(MinecraftServer server, ICommandSender sender, String[] args, @Nullable BlockPos targetPos) {
         if (args.length == 1) {
             return getListOfStringsMatchingLastWord(args, "start", "stop", "change");
-        } else if (("start".equals(args[0]) && args.length == 3) || ("change".equals(args[0]) && args.length == 3 && "uniform".equals(args[1]))) {
+        } else if (("start".equals(args[0]) && args.length == 3) || ("change".equals(args[0]) && args.length == 3 && ("uniform".equals(args[1]) || "forcedrotation".equals(args[1])))) {
             return getListOfStringsMatchingLastWord(args, "true", "false");
         } else if ("change".equals(args[0]) && args.length == 2) {
-            return getListOfStringsMatchingLastWord(args, "speed", "uniform");
+            return getListOfStringsMatchingLastWord(args, "speed", "uniform", "forcedrotation");
         }
 
         return Collections.emptyList();

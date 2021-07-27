@@ -1,5 +1,4 @@
 apply from: 'https://raw.githubusercontent.com/TeamFelnull/GradleTemplate/main/minecraft/1.12.2/forge.gradle'
-
 buildscript {
     repositories {
         maven { url = 'https://files.minecraftforge.net/maven' }

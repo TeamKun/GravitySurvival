@@ -12,6 +12,7 @@ import org.apache.logging.log4j.Logger;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 import java.util.zip.GZIPInputStream;
 
@@ -42,7 +43,7 @@ public class GravitySurvival {
                 }
                 bout.write(buffer, 0, len);
             }
-            logger.info("\n" + bout.toString().replace("⬜", " ").replace("⬛", "#"));
+            logger.info("\n" + new String(bout.toByteArray(), StandardCharsets.UTF_8).replace("⬜", " ").replace("⬛", "#"));
         } catch (Throwable ex) {
             logger.error("You are not ikisugi...");
         }
